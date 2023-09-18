@@ -1,0 +1,10 @@
+<!--画像をActive storageから取得するために簡易的な登録フォームを用意しています-->
+<h1>New item</h1>
+<br>
+<div>
+  <%= form_with model: @item do |form| %>
+    <%= form.text_field :name %><br>
+    <%= form.file_field :image %><br>
+    <%= form.submit %>
+  <% end %>
+</div>

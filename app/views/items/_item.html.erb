@@ -1,0 +1,28 @@
+<% @items.each do |item| %>
+  <div class="col mb-5">
+    <div class="card h-100">
+      <!-- Product image-->
+      <% if item.image.attached? %>
+        <%= image_tag item.image , class: "card-img-top" , height: "178.66px" , width: "268px" %>
+      <% end %>
+      <% unless item.image.attached? %>
+        <%= image_tag "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" , class: "card-img-top" %>
+      <% end %>
+      <!-- Product details-->
+      <div class="card-body p-4">
+        <div class="text-center">
+          <!-- Product name-->
+          <h5 class="fw-bolder"><%= item.name %></h5>
+          <!-- Product price-->
+          $<%= item.price%>
+        </div>
+      </div>
+      <!-- Product actions-->
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center">
+          <%= link_to 'View options', "/items/#{item.id}", class:'btn btn-outline-dark mt-auto' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
