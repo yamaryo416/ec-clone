@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
     # 関連に自分自身を表示させないようにするため
     @item = Item.find(params[:id])
     @items_except_myself = items.reject { |item| item.id == @item.id }
+    @last_four_items = @items_except_myself[-4..]
   end
 
   # GET /items/new
@@ -36,7 +37,6 @@ class ItemsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def permit_params
-    Rails.logger.debug :image
     params.require(:item).permit(:name, :description, :image, :price)
   end
 end
