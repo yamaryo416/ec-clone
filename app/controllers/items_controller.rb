@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
     @item = Item.new(permit_params)
     @item.save
     redirect_to @item
-  end  
+  end
 
   private
 
