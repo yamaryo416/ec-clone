@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :items
+  resources :items :except => [:edit, :update, :destroy]
 end

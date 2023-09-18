@@ -44,9 +44,9 @@
       </div>
     </nav>
     <!-- Product section-->
-    <%= render partial: 'show' %>
+    <%= render 'show', item: @item %>
     <!-- Related items section-->
-    <%= render partial: 'show_related' %>
+    <%= render 'show_related', items_except_myself: @items_except_myself%>
     <!-- Footer-->
     <%= render partial: 'footer' %>
     <!-- Bootstrap core JS-->
