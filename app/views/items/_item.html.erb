@@ -17,10 +17,24 @@
       </div>
     </div>
     <!-- Product actions-->
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-      <div class="text-center">
-        <%= link_to 'View options', "/items/#{item.id}", class:'btn btn-outline-dark mt-auto' %>
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-around">
+      <div>
+        <%= link_to 'View options', "./items/#{item.id}", class:'btn btn-outline-dark mt-auto' %>
       </div>
+      <% if @is_admin %>
+        <div>
+          <%= link_to 'Delete', "/items/#{item.id}" , onclick: " return CheckDelete()", data: { turbo_method: :delete }, class:'btn btn-outline-danger mt-auto' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+<script>
+  function CheckDelete(){
+      if(confirm('削除しますか？')){
+          return true;
+      }else{
+          return false;
+      }
+  }
+</script>
