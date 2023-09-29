@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
     items = Item.all
     # 関連に自分自身を表示させないようにするため
     @item = Item.find(params[:id])
-    @items_except_myself = items.reject { |item| item.id == @item.id }
-    @last_four_items = @items_except_myself[-4..]
+    @items_except_myself = items.where.not(id: params[:id])
+    @last_four_items = @items_except_myself.order(id: :desc).limit(4)
   end
 
   # GET /items/new
