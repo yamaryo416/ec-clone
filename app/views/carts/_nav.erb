@@ -22,15 +22,6 @@
           </ul>
         </li>
       </ul>
-      <% unless @is_admin %>
-        <form class="d-flex">
-          <button class="btn btn-outline-dark" type="submit">
-            <i class="bi-cart-fill me-1 text-decoration-none"></i>
-            <%= link_to 'Cart', cart_path , class:'text-decoration-none'%>
-            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-          </button>
-        </form>
-      <% end %>         
     </div>
   </div>
 </nav>

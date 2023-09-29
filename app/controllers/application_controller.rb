@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   UPDATE_SUCSESS_MSG = '投稿が更新されました。'
   UPDATE_ERROR_MSG = '投稿の更新が失敗しました。もう一度試してください。'
 
-  private
 
   def admin_url
     @is_admin = request.fullpath.include?('/admin')
