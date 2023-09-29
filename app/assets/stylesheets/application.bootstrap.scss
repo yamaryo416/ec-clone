@@ -1,2 +1,22 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+
+
+.notifications {
+  color: black;
+  text-align: center;
+
+  .success {
+    background-color: lightgreen;
+  }
+
+  .notice {
+    background-color: lightBlue;
+  }
+
+  .alert {
+    background-color: lightcoral;
+  }
+}

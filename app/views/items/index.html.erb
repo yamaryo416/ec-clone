@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="rails_ec/app/assets/ico/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="rails_ec/app/assets/stylesheets/styles.css" rel="stylesheet" />
+  </head>
+  <style>
+    .pagination {
+      width: 200px;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <%= render partial: 'nav'%>
+    <!-- Header-->
+    <% if @is_admin %>
+      <header class="bg-danger py-5">
+      <% end %>
+      <% unless @is_admin %>
+        <header class="bg-dark py-5">
+        <% end %>
+        <div class="container px-4 px-lg-5 my-5">
+          <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shop in style</h1>
+            <% if @is_admin %>
+              <p class="lead fw-normal text-white-50 mb-0">Admin Page</p>
+            <% end %>
+            <% unless @is_admin %>
+              <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <% end %>
+          </div>
+        </div>
+      </header>
+      <!-- Section-->
+      <section class="py-3">
+        <div class="container px-4 px-lg-5 mt-5">
+          <!-- 商品追加 -->
+          <% if @is_admin %>
+            <div class = "d-flex justify-content-end my-5">
+              <button type="button" onclick="location.href='/items/new'" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
+            </div>
+          <% end %>
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <!-- 商品一単位-->
+            <%= render @items %>
+          </div>
+          <%= paginate @items, class:"mx-auto", theme: 'bootstrap-5' %>
+        </div>
+      </section>
+      <!-- Footer-->
+      <%= render 'footer' %>
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="js/scripts.js"></script>
+    </body>
+  </html>
+  <script>
+    // adminユーザがページネーションを使い遷移した場合にurlにadminを保持できるようにする
+    window.onload = addAdminToURL;
+
+    function addAdminToURL(){
+      let pagination_url = document.getElementsByClassName('page-link');
+      let current_path_name = location.pathname;
+      if (current_path_name.match(/admin/)){
+        for (let i = 0; i < pagination_url.length; i++){
+          let href = pagination_url[i].href;
+          href = href.replace('/items', '/admin/items');
+          pagination_url[i].href = href
+          pagination_url[i].setAttribute("onClick", 'addAdminToURLBridge()');
+      }
+      }
+    }
+
+    function addAdminToURLBridge(){
+      let pagination_url = document.getElementsByClassName('page-link');
+      let current_path_name = location.pathname;
+      if (current_path_name.match(/admin/)){
+        for (let i = 0; i < pagination_url.length; i++){
+          pagination_url[i].setAttribute("onClick", 'addAdminToURLBridge()');
+        }
+      }
+      window.setTimeout(addAdminToURL, 1000)
+    }
+  </script>
