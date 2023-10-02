@@ -13,10 +13,18 @@
   }
 
   .notice {
-    background-color: lightBlue;
+    color: #FFFFFF;
+    background-color: #000080;
   }
 
   .alert {
-    background-color: lightcoral;
+    background-color: #FFFF00;
+  }      
+
+  .error{
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #808080;
   }
-}
+
+} 

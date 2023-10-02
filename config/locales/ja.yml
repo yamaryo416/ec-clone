@@ -107,6 +107,7 @@ ja:
       month: 月
       year: 年
   errors:
+    cart_empty_error: "何らかの理由でカートを空にできません。後ほど再度お試しください。"
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
@@ -205,3 +206,9 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  cart:
+    add_success: "商品をカートに追加しました！"
+    out_of_stock: "この商品は在庫がありません。"
+  item:
+    update_success: "商品情報を更新しました！"
+    update_failure: "商品情報の更新に失敗しました。もう一度お試しください。"

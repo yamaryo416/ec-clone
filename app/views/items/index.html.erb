@@ -18,6 +18,30 @@
       width: 200px;
       margin: 0 auto;
     }
+    .notifications {
+      color: black;
+      text-align: center;
+
+      .success {
+        background-color: lightgreen;
+      }
+
+      .notice {
+        color: #FFFFFF;
+        background-color: #000080;
+      }
+
+      .alert {
+        background-color: #FFFF00;
+      }
+
+      .error{
+        color: #FFFFFF;
+        font-weight: bold;
+        background-color: #808080;
+      }
+
+    }
   </style>
   <body>
     <%= render partial: 'nav'%>
@@ -42,6 +66,13 @@
       </header>
       <!-- Section-->
       <section class="py-3">
+        <div class="notifications">
+          <% flash.each do |message_type, message| %>
+            <div class='<%= message_type %>'>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
         <div class="container px-4 px-lg-5 mt-5">
           <!-- 商品追加 -->
           <% if @is_admin %>

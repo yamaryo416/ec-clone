@@ -1,5 +1,18 @@
+<style>
+  .detail-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 20px;
+    left: 250px;
+    z-index: 99;
+  }
+</style>
 <div class="col mb-5">
-  <div class="card h-100">
+  <a href="./items/<%= item.id %>">
+    <svg class="detail-icon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+    <div class="card h-100">
+    </a>
     <!-- Product image-->
     <% if item.image.attached? %>
       <%= image_tag item.image , class: "card-img-top" , height: "178.66px" , width: "268px" %>
@@ -19,7 +32,7 @@
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-around">
       <div>
-        <%= link_to 'View options', "./items/#{item.id}", class:'btn btn-outline-dark mt-auto' %>
+        <%= button_to 'Add to Cart', add_item_to_cart_path(item_id: item.id, amount: 1), class: 'btn btn-outline-dark mt-auto', form: { style: 'display: inline;' } %>
       </div>
       <% if @is_admin %>
         <div>

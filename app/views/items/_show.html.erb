@@ -1,3 +1,8 @@
+<style>
+  .hidden-id{
+    display: none;
+  }
+</style>
 <section class="py-5">
   <% if @is_admin %>
     <div class="d-flex justify-content-center bg-danger lead fw-normal text-white-50 py-4">
@@ -29,18 +34,22 @@
             <a href="/admin/items/<%= @item.id %>/edit" class="mx-5 mt-3"><i class="fa-solid fa-pen fa-2x" style="color:blue;"></i></a>
           <% end %>
         </div>
-        <div class="fs-5 mb-5">
-          <span>$<%= item.price %></span>
+        <div class="fs-5 mb-3">
+          <span>・<%= item.price %>円</span>
         </div>
+        <% if @is_admin %>
+          <div class="fs-5 mb-3">
+            <span>・在庫数 : <%= item.stock %></span>
+          </div>
+        <% end %>
         <p class="lead"><%= item.description %></p>
-        <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            Add to cart
-          </button>
-        </div>
+        <%= form_with url: add_item_to_cart_path, method: :post, class: 'd-flex', style: 'display: inline;' do %>
+          <%= number_field_tag :amount, 1, min: 1, class: "form-control text-center me-3", style: "max-width: 3rem" %>
+          <%= number_field_tag :item_id, item.id , class: 'hidden-id'%>
+          <%= submit_tag 'Add to Cart', class: 'btn btn-outline-dark mt-auto' %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 </section>

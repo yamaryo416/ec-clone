@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    cart_empty_error: "Unable to empty the cart due to insufficient stock. Please try again later."
+  item:
+    update_success: "Item has been updated successfully!"
+    update_failure: "Failed to update the item. Please try again."
+  cart:
+    add_cart: "%{item_name} is added to cart"
+    out_of_stock: "This item is out of stock."

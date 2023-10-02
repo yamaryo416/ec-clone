@@ -5,7 +5,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-        <% if @is_admin %>
+        <% if @is_admin %> 
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="/admin/items">Home</a></li>
         <% end %> 
         <% unless @is_admin %>
@@ -22,13 +22,6 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">
-          <i class="bi-cart-fill me-1 text-decoration-none"></i>
-          <%= link_to 'Cart', cart_path , class:'text-decoration-none'%>
-          <span class="badge bg-dark text-white ms-1 rounded-pill"><%= @cart.total_amount %></span>
-        </button>
-      </form>
     </div>
   </div>
 </nav>

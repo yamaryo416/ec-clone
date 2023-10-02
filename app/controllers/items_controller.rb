@@ -5,8 +5,9 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @is_admin = request.fullpath.include?('/admin')
-    @items = Item.all.page(params[:page]).per(12)
+    # 購入処理のたびに順序が変わるのを防ぐためにidで昇順にする
+    @items = Item.order(id: :asc).page(params[:page]).per(12)
+    @cart = current_or_create_cart
   end
 
   # GET /items/1
@@ -16,6 +17,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @items_except_myself = items.where.not(id: params[:id])
     @last_four_items = @items_except_myself.order(id: :desc).limit(4)
+    @cart = current_or_create_cart
   end
 
   # GET /items/new
@@ -45,11 +47,11 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find_by(id: [params[:id]])
     if @item.update(permit_params)
-      flash[:success] = UPDATE_SUCSESS_MSG
+      flash[:success] = I18n.t('item.update_success')
       redirect_to "/admin/items/#{params[:id]}"
     else
       set_img_name
-      flash[:danger] = UPDATE_ERROR_MSG
+      flash[:danger] = I18n.t('item.update_failure')
       render :edit
     end
   end
