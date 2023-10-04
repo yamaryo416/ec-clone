@@ -5,6 +5,10 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_or_create_cart
+    @order = Order.new
+    @order.build_billing_address
+    @order.build_payment
+    @order.order_items.new
   end
 
   def add_item

@@ -2,9 +2,10 @@
 
 Rails.application.routes.draw do
   resources 'items'
+  resources 'orders'
   resource :cart, only: [:show]
 
-  root 'item#index'
+  root 'items#index'
 
   resources :carts do
     collection do
