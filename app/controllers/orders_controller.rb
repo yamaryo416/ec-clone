@@ -4,6 +4,16 @@ class OrdersController < ApplicationController
   
   skip_before_action :verify_authenticity_token
 
+  def index
+    @orders = Order.all.includes(:billing_address)
+  end
+
+  def show
+    @order = Order.includes(:order_items, :billing_address, :payment).find(params[:id])
+    @total_price = @order.order_items.map { |item| item.price * item.amount }.sum
+  end
+  
+
   def create
     @user = User.create(session_id: session.id)
     @order = Order.new(order_params.merge(user: @user))
@@ -16,6 +26,7 @@ class OrdersController < ApplicationController
         order_item.amount = order_item_data[:amount].to_i
       end
     end
+    deduct_inventory_and_clear_cart
     if @order.save
       flash[:info] = '購入ありがとうございます'
       redirect_to root_path
@@ -33,5 +44,24 @@ class OrdersController < ApplicationController
       payment_attributes: [:name_on_card, :credit_card_number, :expiration_date, :cvv],
     )
   end
+
+  def deduct_inventory_and_clear_cart
+    @cart = current_or_create_cart
+    ActiveRecord::Base.transaction do
+      @cart.cart_items.each do |cart_item|
+        item = cart_item.item
+        item.stock -= cart_item.amount # 在庫数を減少
+  
+        unless item.save
+          flash[:error] = I18n.t('errors.purchase_error')
+          raise ActiveRecord::Rollback
+        end
+      end
+      @cart.cart_items.destroy_all
+    end
+  
+    # ...
+  end
+  
 
 end
