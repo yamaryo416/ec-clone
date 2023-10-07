@@ -379,6 +379,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rails-i18n
   rails_best_practices
+  rexml
   rspec-rails
   rubocop
   rubocop-hc!
