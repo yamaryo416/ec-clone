@@ -27,6 +27,12 @@ Hc/RailsSpecificActionName:
     - app/controllers/carts_controller.rb
     - app/controllers/items_controller.rb
 
+AllCops:
+  Exclude:
+    - 'db/*'
+    - 'db/migrate/*'
+    - 'bin/*'
+
 # rubocupに追加して欲しいと言われた分
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30

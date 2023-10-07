@@ -9,6 +9,17 @@
   }
 </style>
 <%= render partial: 'nav'%>
+<% [@order.payment, @order.billing_address].each do |object| %>
+  <% if object.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
 <div class="container">
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -108,7 +119,7 @@
         </div>
         <div class="mb-3">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <%= billing_address.text_field :address_2, class: "form-control",:placeholder => "Apartment or suite"%><br>
+          <%= billing_address.text_field :address2, class: "form-control",:placeholder => "Apartment or suite"%><br>
         </div>
       <% end %>
       <hr class="mb-4">
@@ -118,18 +129,17 @@
           <div class="col-md-6 mb-3">
             <label for="cc-name">Name on card</label>
             <%= payment.text_field :name_on_card, class: "form-control",:placeholder => ""%><br>
-            <small class="text-muted">Full name as displayed on card</small>
             <div class="invalid-feedback"> Name on card is required </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="cc-number">Credit card number</label>
-            <%= payment.text_field :credit_card_number, class: "form-control",:placeholder => ""%><br>
+            <%= payment.text_field :credit_card_number, class: "form-control",:placeholder => "0000000000000000"%><br>
             <div class="invalid-feedback"> Credit card number is required </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-3 mb-3">
-            <label for="cc-expiration">Expiration</label>
+            <label for="cc-expiration">Expiration date</label>
             <%= payment.text_field :expiration_date, class: "form-control",:placeholder => "MM/YY"%><br>
             <div class="invalid-feedback"> Expiration date required </div>
           </div>

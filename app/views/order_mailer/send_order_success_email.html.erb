@@ -1,31 +1,3 @@
-<style>
-  .ms-8 {
-    margin-left: 8rem !important;
-  }
-  .me-8 {
-    margin-right: 8rem !important;
-  }  
-  .order-section h2 {
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-  }
-  .order-section {
-    margin: 0 20px;
-  }
-  .font-weight-bold {
-    font-weight: bold;
-  }
-  .honorific-title {
-    font-size: 0.8rem;
-
-  }
-  .bought_items{
-    width:180px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-  }
-</style>
-<%= render partial: 'nav'%>
 <div class="mt-4">
   <div class="ms-8 mb-4 d-flex justify-content-between align-items-center">
     <h1>
@@ -33,7 +5,7 @@
       <span class="honorific-title">さん</span>
     </h1>
     <h2 class="honorific-title me-8 mt-4">
-      <strong>購入日時：</strong><%= @order.formatted_created_at %>
+      <strong>購入日時：</strong><%= @order.billing_address.created_at.strftime("%Y/%m/%d %H時%M分") %>
     </h2>
   </div>
   <hr>
@@ -43,7 +15,7 @@
       <% @order.order_items.each do |order_item| %>
         <p><%= order_item.item.name %> / <%= number_to_currency(order_item.price) %>  / <%= order_item.amount %>個</p>
       <% end %>
-      <p class="font-weight-bold">合計 <%= number_to_currency(@order.total_price) %></p>
+      <p class="font-weight-bold">合計 <%= number_to_currency(@total_price) %></p>
     </div>
     <div class="order-section">
       <h2 class="mb-3">購入者情報</h2>
@@ -73,14 +45,6 @@
             <% unless order_item.item.image.attached? %>
               <%= image_tag "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" , class: "card-img-top" %>
             <% end %>
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- 名前は現在のものを使用 -->
-                <h5 class="fw-bolder"><%= order_item.item.name %></h5>
-                <!-- 購入時の値段-->
-                $<%= number_to_currency(order_item.price) %>
-              </div>
-            </div>
           </div>
         </div>
       <% end %>
