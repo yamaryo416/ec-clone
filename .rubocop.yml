@@ -20,12 +20,38 @@ Layout/LineLength:
   Exclude:
     - config/initializers/devise.rb
     - db/migrate/*.rb
+    - bin/bundle
 Hc/RailsSpecificActionName:
   Exclude:
     - app/controllers/users/omniauth_callbacks_controller.rb
     - app/controllers/application_controller.rb
     - app/controllers/carts_controller.rb
     - app/controllers/items_controller.rb
+
+AllCops:
+  Exclude:
+    - 'db/*'
+    - 'db/migrate/*'
+    - 'bin/bundle'
+  NewCops: enable
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+  Enabled: true
+  
+Metrics/PerceivedComplexity:
+  Max: 8
+  Enabled: true
+
+
+Capybara/ClickLinkOrButtonStyle: # new in 2.19
+  Enabled: true
+Capybara/RSpec/HaveSelector: # new in 2.19
+  Enabled: true
+Capybara/RSpec/PredicateMatcher: # new in 2.19
+  Enabled: true
+FactoryBot/IdSequence: # new in <<next>>
+  Enabled: true
 
 # rubocupに追加して欲しいと言われた分
 

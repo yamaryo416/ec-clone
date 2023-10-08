@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener'
   resources 'items'
+  resources 'orders'
   resource :cart, only: [:show]
 
-  root 'item#index'
+  root 'items#index'
 
   resources :carts do
     collection do

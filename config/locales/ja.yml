@@ -108,6 +108,7 @@ ja:
       year: 年
   errors:
     cart_empty_error: "何らかの理由でカートを空にできません。後ほど再度お試しください。"
+    format_yymm: "MM/YY形式で入力してください'"
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
@@ -212,3 +213,7 @@ ja:
   item:
     update_success: "商品情報を更新しました！"
     update_failure: "商品情報の更新に失敗しました。もう一度お試しください。"
+  order:
+    thank_you: "ご購入ありがとうございます"
+  mail:
+    subject: "購入明細書"  

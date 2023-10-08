@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :price, numericality: { in: 0.. }
   validates :stock, numericality: { in: 0.. }
   include Discard::Model
-  default_scope -> { kept }
+  scope :active, -> { kept }
   has_one_attached :image
   has_many :cart_items, dependent: :destroy
   has_many :carts, through: :cart_items
