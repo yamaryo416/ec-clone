@@ -32,9 +32,14 @@
 en:
   errors:
     cart_empty_error: "Unable to empty the cart due to insufficient stock. Please try again later."
+    format_yymm: "should be in the format MM/YY'"
   item:
     update_success: "Item has been updated successfully!"
     update_failure: "Failed to update the item. Please try again."
   cart:
     add_cart: "%{item_name} is added to cart"
     out_of_stock: "This item is out of stock."
+  order:
+    thank_you: "Thank you for your purchase"
+  mail:
+    subject: "Purchase Details"
