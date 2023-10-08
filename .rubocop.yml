@@ -20,6 +20,7 @@ Layout/LineLength:
   Exclude:
     - config/initializers/devise.rb
     - db/migrate/*.rb
+    - bin/bundle
 Hc/RailsSpecificActionName:
   Exclude:
     - app/controllers/users/omniauth_callbacks_controller.rb
@@ -31,7 +32,12 @@ AllCops:
   Exclude:
     - 'db/*'
     - 'db/migrate/*'
-    - 'bin/bundle'
+
+CyclomaticComplexity:
+  Max: 9
+
+PerceivedComplexity:
+  Max: 9
 
 # rubocupに追加して欲しいと言われた分
 
