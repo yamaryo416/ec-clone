@@ -33,7 +33,6 @@ AllCops:
     - 'db/*'
     - 'db/migrate/*'
     - 'bin/bundle'
-  NewCops: enable
 
 Metrics/CyclomaticComplexity:
   Max: 6
