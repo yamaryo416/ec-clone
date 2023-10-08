@@ -96,5 +96,5 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host:'https://railsecdemo-f5d108b8bb10.herokuapp.com/' }  
+  config.action_mailer.default_url_options = { host: 'https://railsecdemo-f5d108b8bb10.herokuapp.com/' }
 end
