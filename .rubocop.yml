@@ -32,12 +32,14 @@ AllCops:
   Exclude:
     - 'db/*'
     - 'db/migrate/*'
+    - 'bin/bundle'
+  NewCops: enable
 
-CyclomaticComplexity:
-  Max: 9
+Metrics/CyclomaticComplexity:
+  Max: 6
+Metrics/PerceivedComplexity:
+  Max: 8
 
-PerceivedComplexity:
-  Max: 9
 
 # rubocupに追加して欲しいと言われた分
 
