@@ -1,5 +1,5 @@
 runner:
   rubocop:
     cmd: bundle exec rubocop
-    format: clang
+    format: rubocop
     level: error
