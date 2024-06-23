@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   # GET /items
   def index
     # 購入処理のたびに順序が変わるのを防ぐためにidで昇順にする
-    @items = Item.order(id: :asc).page(params[:page]).per(12)
+    @items = Item.active.order(id: :asc).page(params[:page]).per(12)
     @cart = current_or_create_cart
   end
 

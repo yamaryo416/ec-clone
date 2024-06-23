@@ -1,0 +1,48 @@
+<style>
+  .order-header {
+    background-color:#DDDDDD;
+  }
+  .to-detail-link a {
+  font-weight:bold;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  text-decoration:none;
+  }
+  .to-detail-link a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 0;
+  height: 1px;/*下線の太さ*/
+  background-color:#337ab7 ;/*下線の色*/
+  transition: .3s;
+  }
+  .to-detail-link a:hover::after {
+  width: 100%;
+  }
+</style>
+<%= render partial: 'nav'%>
+<table class="table table-sm">
+  <thead>
+    <tr class="order-header">
+      <th scope="col" >#</th>
+      <th scope="col" class="order-header">名前</th>
+      <th scope="col" class="order-header">メール</th>
+      <th scope="col" class="order-header">購入日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each_with_index do |order, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td class = "to-detail-link">
+          <%= link_to order.billing_address.username, order_path(order)%>
+        </td>
+        <td><%= order.billing_address.email %></td>
+        <td><%= order.billing_address.created_at.strftime("%Y/%m/%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
